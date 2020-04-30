@@ -357,3 +357,50 @@ typename RBTree<keyT,valueT>::rbnode * RBTree<keyT,valueT>::find(keyT key) {
     }
     return x;
 }
+
+/**
+ * Get value by key.
+ */
+template<typename keyT, typename valueT>
+valueT RBTree<keyT,valueT>::get(keyT key) {
+    return find(key)->data;
+}
+
+/**
+ * Internal method for printStructure
+ * @tparam keyT
+ * @tparam valueT
+ * @param prefix
+ * @param node
+ * @param isLeft
+ */
+template<typename keyT, typename valueT>
+void RBTree<keyT,valueT>::printRBT(const std::string& prefix, const RBTree<keyT,valueT>::rbnode * node, bool isLeft)
+{
+    if( node != NIL )
+    {
+        cout << prefix;
+
+        cout << (isLeft ? "├──" : "└──" );
+
+        // print the value of the node
+        if (node->color == RED)
+            cout << "\x1B[31m" << node->key << "\033[0m" << endl;
+        else
+            cout << node->key << endl;
+        // enter the next tree level - left and right branch
+        printRBT( prefix + (isLeft ? "│   " : "    "), node->left, true);
+        printRBT( prefix + (isLeft ? "│   " : "    "), node->right, false);
+    }
+}
+
+/**
+ * Prints tree structure like `tree` command
+ * @tparam keyT
+ * @tparam valueT
+ */
+template<typename keyT, typename valueT>
+void RBTree<keyT,valueT>::printStructure() {
+    const RBTree<keyT,valueT>::rbnode* node = root;
+    printRBT("", node, false);
+}

@@ -10,10 +10,10 @@ int main() {
 //    map<int, int> another_tree;
 
     // Speed test
-    for (long long key = 0; key < 15; key++) {
+    for (int key = 0; key < 10; key++) {
         int k = 1 + rand() / ((RAND_MAX + 1u) / 123456);
 //        another_tree.insert({k, val});
-        tree->insert(k, &nval);
+        tree->insert(key, &key);
         tree->printConnections();
     }
     for (int i = 10; i > 5; i--){
@@ -21,6 +21,8 @@ int main() {
         tree->remove(i);
     }
     tree->printConnections();
+    cout << "Tree: " << endl;
+    tree->printStructure();
     return 0;
 }
 

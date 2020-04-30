@@ -46,6 +46,7 @@ public:
 
     // Debug function. Just prints all connections to stdout.
     void printConnections();
+    void printStructure();
 
 private:
     // Internal functions
@@ -59,9 +60,11 @@ private:
     void delete_fixup(rbnode *x);
 
     // Main tree manipulations
-
     void deleteNode(rbnode *z);
     rbnode * find(keyT key);
+
+    // Debug funcs
+    void printRBT(const std::string& prefix, const rbnode * node, bool isLeft);
 
 };
 
